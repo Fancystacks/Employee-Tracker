@@ -1,40 +1,56 @@
-DROP DATABASE IF EXISTS employeeDB;
-CREATE DATABASE employeeDB;
+DROP DATABASE IF EXISTS employee_db;
+CREATE DATABASE employee_db;
 
-USE employeeDB;
+USE employee_db;
 
-CREATE TABLE department (
-id INT NOT NULL AUTO_INCREMENT,
-name VARCHAR(30) NOT NULL,
-PRIMARY KEY (id)
+CREATE TABLE department
+(	id INT NOT NULL AUTO_INCREMENT
+    , name VARCHAR(30) NOT NULL
+    , PRIMARY KEY (id)
 );
 
-CREATE TABLE position (
-id INT NOT NULL AUTO_INCREMENT,
-title VARCHAR(30) NOT NULL,
-salary VARCHAR(20) NOT NULL,
-department_id INT,
-PRIMARY KEY (id)
+CREATE TABLE role
+(	id INT NOT NULL AUTO_INCREMENT
+    , title VARCHAR(30) NOT NULL
+    , salary DECIMAL(8, 2)
+    , department_id INT
+    , PRIMARY KEY (id)
 );
 
-CREATE TABLE employee (
-id INT NOT NULL AUTO_INCREMENT,
-first_name VARCHAR(30) NOT NULL,
-last_name VARCHAR(30) NOT NULL,
-role_id INT,
-manager_id INT,
-PRIMARY KEY (id)
+CREATE TABLE employee
+(	id INT NOT NULL AUTO_INCREMENT
+    , first_name VARCHAR(30)
+    , last_name VARCHAR(30)
+    , role_id INT
+    , manager_id INT DEFAULT NULL
+    , PRIMARY KEY (id)
 );
 
 INSERT INTO department (name)
-VALUES ("Sales"), ("Finance"), ("Legal"), ("Engineering");
+VALUES ("Operations"), ("Sales"), ("Finance"), ("Legal"), ("Engineering");
 
-INSERT INTO position (title, salary, department_id)
-VALUES ("Sales Manager", 110000, 1), ("Salesman", 90000, 1), ("Consultant", 100000, 1),
-("Accountant", 85000, 2), ("Attorney", 130000, 2), ("Legal Manager", 150000, 2),
-("Electrical Engineer", 100000, 3), ("Software Engineer", 120000, 3), ("Field Engineer", 100000, 3);
+INSERT INTO role (title, salary, department_id)
+VALUES ("President", 450000, 1)
+, ("VP", 300000, 2) 
+, ("COO", 210000, 4) 
+, ("Sales Manager", 150000, 3) 
+, ("Salesman", 95000, 2)
+, ("Consultant", 110000, 6)
+, ("Accountant", 800000, 3)
+, ("Legal Manager", 150000, 2) 
+, ("Attorney", 120000, 6) 
+, ("Engineer", 105000, 3) 
+, ("Software Engineer", 10000, 5);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Robert", "Sigg", 2, 4), ("Robert", "Schwartz", 2, 3), ("Chris", "Gorman", 1, NULL),
-("Andrew", "Metzger", 1, 3), ("Micah", "Meyers", 3, NULL), ("Randy", "Newman", 1, NULL), ("Leah", "Migacz", 3, 5),
-("Trent", "Trani", 2, 6), ("David", "Reed", 3, 2);
+VALUES("Chris", "Gorman", 1, NULL)
+, ("Andrew", "Metzger", 2, 3)
+, ("Robert", "Sigg", 3, 1)
+, ("Robert", "Schwartz", 4, 7)
+, ("Theodore", "Turner", 5, NULL)
+, ("Mindy", "Lew", 6, NULL)
+, ("David", "Reed", 7, 4)
+, ("Chris", "Larsson", 8, NULL)
+, ("Zach", "Haas", 9, 3)
+, ("Lorie", "Wilkens", 10, 5)
+, ("Jeff", "Wolffe", 11, 2)
