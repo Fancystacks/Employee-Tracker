@@ -1,14 +1,14 @@
-require('dotenv').config({ path: __dirname + '/.env' })
+const dotenv = require('dotenv').config();
 const mysql = require("mysql");
 const inquirer = require("inquirer")
 const cTable = require("console.table");
 
 var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "greenp0ison",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
     port: 3306,
-    database: "employee_db"
+    database: process.env.DB_DB
 });
 
 connection.connect(function (err) {
