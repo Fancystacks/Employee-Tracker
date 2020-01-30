@@ -24,4 +24,4 @@
 
 <img src="https://user-images.githubusercontent.com/38336934/73371696-48e71f00-4273-11ea-835c-878d7040b535.png" width="540" height="300">
 
-This site was created and deployed on [GitHub Pages](https://github.com/Fancystacks/Employee-Tracker/).
+This site was deployed on [Heroku](https://git.heroku.com/cryptic-citadel-54318.git).
