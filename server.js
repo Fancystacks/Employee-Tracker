@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    console.log("connected as id " + connection.threadId + "\n");
+    console.log(`"connected as id ${connection.threadId}"\n"`);
 
     commence();
 });
@@ -31,6 +31,7 @@ const commence = () => {
                     , "View Employees by Role"
                     , "Add an Employee"
                     , "Update an Employee's Role"
+                    , "Remove an Employee"
                     , "Exit"
                 ]
             }
@@ -50,6 +51,9 @@ const commence = () => {
                     break;
                 case "Update an Employee's Role":
                     changeEmployee();
+                    break;
+                case "Remove an Employee":
+                    removeEmployee();
                     break;
                 default:
                     connection.end();
@@ -143,6 +147,7 @@ const employeeRoles = () => {
         });
 }
 
+// adding a new employee and subsequently choosing their position 
 const newEmployee = () => {
     inquirer
         .prompt([
@@ -227,6 +232,7 @@ const newEmployee = () => {
         });
 };
 
+// update an employee - choose employee and title to update
 const changeEmployee = () => {
     const query = "SELECT CONCAT(first_name, ' ', last_name) as name FROM employee;"
     connection.query(
@@ -302,6 +308,8 @@ const changeEmployee = () => {
                             break;
                     }
                     const emp = data.choiceEmployee.split(" ");
+                    empfirst = emp[0];
+                    emplast = emp[1];
                     const query = "UPDATE employee SET ? WHERE ? AND ?";
                     connection.query(
                         query
@@ -310,10 +318,10 @@ const changeEmployee = () => {
                                 role_id: roleID
                             },
                             {
-                                first_name: emp[0]
+                                first_name: empfirst
                             },
                             {
-                                last_name: emp[1]
+                                last_name: emplast
                             }
                         ]
                         , (err) => {
@@ -325,4 +333,46 @@ const changeEmployee = () => {
         });
 };
 
-
+const removeEmployee = () => {
+    const query = "SELECT CONCAT(first_name, ' ', last_name) as name FROM employee;"
+    connection.query(
+        query
+        , (err, res) => {
+            if (err) throw err;
+            inquirer
+                .prompt(
+                    {
+                        type: "list"
+                        , message: "Which employee would you like to remove?"
+                        , name: "choiceEmployee"
+                        , choices: () => {
+                            var selections = [];
+                            for (const item of res) {
+                                selections.push(item.name);
+                            }
+                            return selections;
+                        }
+                    }
+                ).then(data => {
+                    const emp = data.choiceEmployee.split(" ");
+                    empfirst = emp[0];
+                    emplast = emp[1];
+                    const query = "DELETE FROM employee WHERE ? AND ?";
+                    connection.query(
+                        query
+                        , [
+                            {
+                                first_name: empfirst
+                            },
+                            {
+                                last_name: emplast
+                            }
+                        ]
+                        , (err) => {
+                            if (err) throw err;
+                            console.log("Employee deleted from the database!");
+                            commence();
+                        });
+                });
+        });
+};

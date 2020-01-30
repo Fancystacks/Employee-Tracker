@@ -3,7 +3,7 @@
 ![employee](https://user-images.githubusercontent.com/38336934/73371112-75e70200-4272-11ea-8af5-4726385d10bf.gif)
 
 ## Download:
-- Add dependencies npm console.table and npm install
+- Add dependencies npm console.table and npm mysql
 
 - Type node server.js in the command line for prompt
     - Answer the input prompt
