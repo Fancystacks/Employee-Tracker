@@ -18,7 +18,7 @@
 
 <img src="https://user-images.githubusercontent.com/38336934/73371708-500e2d00-4273-11ea-9ca6-298f95c5c20a.png" width="540" height="300">
 
-## Update Employee Role:
+## Update Employee Role or Delete Employee:
 
 ### Toggle through options and choose prompts
 
