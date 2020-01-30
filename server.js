@@ -333,6 +333,7 @@ const changeEmployee = () => {
         });
 };
 
+// delete an employee, select and delete employee by name
 const removeEmployee = () => {
     const query = "SELECT CONCAT(first_name, ' ', last_name) as name FROM employee;"
     connection.query(
