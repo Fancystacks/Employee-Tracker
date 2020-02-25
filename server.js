@@ -180,39 +180,40 @@ const newEmployee = () => {
                 ]
             }
         ]).then(data => {
+            console.log(data.choice)
             switch (data.choice) {
                 case "President":
-                    var roleID = 3;
-                    break;
-                case "VP":
-                    var roleID = 5;
-                    break;
-                case "COO":
-                    var roleID = 4;
-                    break;
-                case "Sales Manager":
                     var roleID = 1;
                     break;
+                case "VP":
+                    var roleID = 2;
+                    break;
+                case "COO":
+                    var roleID = 3;
+                    break;
+                case "Sales Manager":
+                    var roleID = 4;
+                    break;
                 case "Salesman":
-                    var roleID = 9;
+                    var roleID = 5;
                     break;
                 case "Consultant":
-                    var roleID = 8;
-                    break;
-                case "Accountant":
-                    var roleID = 10;
-                    break;
-                case "Legal Manager":
-                    var roleID = 11;
-                    break;
-                case "Attorney":
                     var roleID = 6;
                     break;
-                case "Engineer":
+                case "Accountant":
                     var roleID = 7;
                     break;
+                case "Legal Manager":
+                    var roleID = 8;
+                    break;
+                case "Attorney":
+                    var roleID = 9;
+                    break;
+                case "Engineer":
+                    var roleID = 10;
+                    break;
                 case "Software Engineer":
-                    var roleID = 2;
+                    var roleID = 11;
                     break;
             }
 
@@ -274,37 +275,37 @@ const changeEmployee = () => {
                 ]).then(data => {
                     switch (data.choice) {
                         case "President":
-                            var roleID = 3;
-                            break;
-                        case "VP":
-                            var roleID = 5;
-                            break;
-                        case "COO":
-                            var roleID = 4;
-                            break;
-                        case "Sales Manager":
                             var roleID = 1;
                             break;
+                        case "VP":
+                            var roleID = 2;
+                            break;
+                        case "COO":
+                            var roleID = 3;
+                            break;
+                        case "Sales Manager":
+                            var roleID = 4;
+                            break;
                         case "Salesman":
-                            var roleID = 9;
+                            var roleID = 5;
                             break;
                         case "Consultant":
-                            var roleID = 8;
-                            break;
-                        case "Accountant":
-                            var roleID = 10;
-                            break;
-                        case "Legal Manager":
-                            var roleID = 11;
-                            break;
-                        case "Attorney":
                             var roleID = 6;
                             break;
-                        case "Engineer":
+                        case "Accountant":
                             var roleID = 7;
                             break;
+                        case "Legal Manager":
+                            var roleID = 8;
+                            break;
+                        case "Attorney":
+                            var roleID = 9;
+                            break;
+                        case "Engineer":
+                            var roleID = 10;
+                            break;
                         case "Software Engineer":
-                            var roleID = 2;
+                            var roleID = 11;
                             break;
                     }
                     const emp = data.choiceEmployee.split(" ");
